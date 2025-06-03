@@ -90,5 +90,83 @@
   CLICK HERE FOR A GAME ABOUT CALEB
 </a>
 
+<style>
+  body {
+    animation: spinBackground 5s linear infinite;
+    font-family: "Comic Sans MS", cursive;
+    cursor: url('https://cur.cursors-4u.net/others/oth-9/oth868.cur'), auto;
+  }
+
+  @keyframes spinBackground {
+    0%   { background-color: magenta; }
+    25%  { background-color: yellow; }
+    50%  { background-color: lime; }
+    75%  { background-color: cyan; }
+    100% { background-color: magenta; }
+  }
+
+  h1, h2, p, li, a {
+    animation: wiggle 0.2s infinite alternate ease-in-out;
+    transform-origin: center;
+  }
+
+  @keyframes wiggle {
+    0%   { transform: rotate(-2deg) scale(1); }
+    100% { transform: rotate(2deg) scale(1.1); }
+  }
+
+  a {
+    color: red !important;
+    background: linear-gradient(45deg, blue, green, red, yellow);
+    background-size: 400% 400%;
+    animation: rainbowLink 1s infinite;
+    text-shadow: 0 0 5px white;
+  }
+
+  @keyframes rainbowLink {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+
+  .fancy-btn, .big-button {
+    font-size: 2em;
+    animation: buttonShake 0.3s infinite alternate;
+  }
+
+  @keyframes buttonShake {
+    from { transform: translateX(-3px) rotate(-1deg); }
+    to   { transform: translateX(3px) rotate(1deg); }
+  }
+
+  img {
+    animation: spinny 1s linear infinite;
+  }
+
+  @keyframes spinny {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  ::selection {
+    background: red;
+    color: white;
+  }
+</style>
+
+<script>
+  setInterval(() => {
+    const emoji = ["🔥","🤪","🌀","💥","😵‍💫","👻","🍕","😈"];
+    const span = document.createElement("span");
+    span.innerText = emoji[Math.floor(Math.random() * emoji.length)];
+    span.style.position = "absolute";
+    span.style.fontSize = `${Math.random() * 3 + 1}em`;
+    span.style.left = `${Math.random() * 100}%`;
+    span.style.top = `${Math.random() * 100}%`;
+    document.body.appendChild(span);
+    setTimeout(() => span.remove(), 3000);
+  }, 200);
+</script>
+
+  
 </body>
 </html>
