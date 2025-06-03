@@ -1,0 +1,147 @@
+body {background-color: rgb(255, 166, 0);}
+h1 {color:rgb(0, 0, 255);
+    text-align: center;}
+h2 {color: red;
+    text-align: center;}
+p {color:rgb(0, 89, 255);
+    text-align: center;}
+
+div.ToDo {
+    text-align: center;}  
+  ul.list {
+    display: inline-block;
+    text-align: left;
+  }
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.big-button {
+    width: 200px;
+    height: 60px;
+    font-size: 16px;
+    background-color: #00ff08;
+    color: rgb(255, 0, 0);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+.big-button:hover {
+    background-color: #00ff0d;
+  }
+
+/* General styling for all pages */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4; /* A light background color */
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Top bar styling */
+.top-bar {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  display: flex; /* Use flexbox to align links */
+  justify-content: center; /* Centers the links */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.top-bar a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  margin: 0 15px; /* Adds equal space between the links */
+  padding: 5px 10px; /* Adds space around the text */
+}
+
+.top-bar a:hover {
+  color: #4CAF50; /* Hover effect for the links */
+}
+
+/* Add space below the top bar for the rest of the content */
+body {
+  margin-top: 50px; /* Adjust based on the height of your top bar */
+}
+
+/* Game Page Styling */
+.game-page {
+  background-color: white; /* Set the background color to white */
+  color: #333; /* Dark text for readability */
+  padding: 20px;
+  text-align: center;
+}
+
+#gameCanvas {
+  background-color: #000;
+  border: 2px solid #fff;
+  display: block;
+  margin: 0 auto; /* Centers the canvas on the page */
+}
+
+/* Home Page Styling */
+.content {
+  text-align: center;
+  padding: 20px;
+}
+
+.content h1 {
+  color: #4CAF50; /* Green title for home page */
+}
+
+.content p {
+  font-size: 18px;
+}
+
+/* Responsive Design (for smaller screens) */
+@media (max-width: 768px) {
+  .top-bar a {
+    font-size: 16px; /* Adjust font size for smaller screens */
+    margin: 0 10px;
+  }
+  #gameCanvas {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+
+
+/*div.my-button {
+    display: block;
+    margin: auto;
+  button.button {
+    display: inline-block;
+    text-align: left;
+    }
+  }
+
+slds.center {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+  }
+sjk.button {
+    background-color: #04AA6D; Green
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+  }
+  /*
