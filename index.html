@@ -101,6 +101,24 @@
   CALEB
 </div>
 
+<!-- Two big flying CALEB elements -->
+<div id="seizureCaleb1" style="
+  position: fixed; font-size: 15vw; font-weight: 900; font-family: Impact, sans-serif;
+  pointer-events: none; user-select: none; text-transform: uppercase; z-index: 2147483647;
+  left: 50%; top: 50%; transform: translate(-50%, -50%);
+  color: red;
+">
+  CALEB
+</div>
+<div id="seizureCaleb2" style="
+  position: fixed; font-size: 15vw; font-weight: 900; font-family: Impact, sans-serif;
+  pointer-events: none; user-select: none; text-transform: uppercase; z-index: 2147483647;
+  left: 60%; top: 60%; transform: translate(-50%, -50%);
+  color: blue;
+">
+  CALEB
+</div>
+
 <script>
   const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff', '#ffffff', '#000000'];
   
@@ -133,8 +151,8 @@
 
   // Flying CALEB setup
   const calebs = [
-    { el: document.getElementById('seizureCaleb1'), x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, vx: (Math.random() - 0.5) * 10, vy: (Math.random() - 0.5) * 10 },
-    { el: document.getElementById('seizureCaleb2'), x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, vx: (Math.random() - 0.5) * 10, vy: (Math.random() - 0.5) * 10 },
+    { el: document.getElementById('seizureCaleb1'), x: window.innerWidth * 0.5, y: window.innerHeight * 0.5, vx: (Math.random() - 0.5) * 8, vy: (Math.random() - 0.5) * 8 },
+    { el: document.getElementById('seizureCaleb2'), x: window.innerWidth * 0.6, y: window.innerHeight * 0.6, vx: (Math.random() - 0.5) * 8, vy: (Math.random() - 0.5) * 8 },
   ];
 
   function moveCalebs() {
@@ -150,13 +168,16 @@
       if (obj.x > maxX) { obj.x = maxX; obj.vx *= -1; }
       if (obj.y > maxY) { obj.y = maxY; obj.vy *= -1; }
 
-      obj.el.style.transform = `translate(${obj.x}px, ${obj.y}px)`;
+      obj.el.style.left = obj.x + 'px';
+      obj.el.style.top = obj.y + 'px';
+      obj.el.style.transform = 'translate(-50%, -50%)';
       obj.el.style.color = pickDiffColor(bgColor);
     });
   }
 
   setInterval(moveCalebs, 50);
 </script>
+
 
 </body>
 </html>
