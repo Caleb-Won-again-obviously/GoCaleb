@@ -89,5 +89,74 @@
 <a href="https://scratch.mit.edu/projects/1182801283" target="_blank" class="fancy-btn bottom-right">
   CLICK HERE FOR A GAME ABOUT CALEB
 </a>
+  <!-- Two big flying CALEB elements -->
+<div id="seizureCaleb1" style="
+  position: fixed; font-size: 15vw; font-weight: 900; font-family: Impact, sans-serif;
+  pointer-events: none; user-select: none; text-transform: uppercase; z-index: 9999;">
+  CALEB
+</div>
+<div id="seizureCaleb2" style="
+  position: fixed; font-size: 15vw; font-weight: 900; font-family: Impact, sans-serif;
+  pointer-events: none; user-select: none; text-transform: uppercase; z-index: 9999;">
+  CALEB
+</div>
+
+<script>
+  const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff', '#ffffff', '#000000'];
+  
+  function pickDiffColor(exclude) {
+    let c;
+    do {
+      c = colors[Math.floor(Math.random() * colors.length)];
+    } while (c === exclude);
+    return c;
+  }
+
+  let bgColor = '#000000';
+  let textColor = '#ffffff';
+
+  function flashColors() {
+    bgColor = pickDiffColor(textColor);
+    textColor = pickDiffColor(bgColor);
+    document.body.style.backgroundColor = bgColor;
+    
+    // Flash all text elements
+    const allTextElems = document.querySelectorAll('body *:not(script):not(style)');
+    allTextElems.forEach(el => {
+      if (window.getComputedStyle(el).color) {
+        el.style.color = textColor;
+      }
+    });
+  }
+
+  setInterval(flashColors, 100);
+
+  // Flying CALEB setup
+  const calebs = [
+    { el: document.getElementById('seizureCaleb1'), x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, vx: (Math.random() - 0.5) * 10, vy: (Math.random() - 0.5) * 10 },
+    { el: document.getElementById('seizureCaleb2'), x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, vx: (Math.random() - 0.5) * 10, vy: (Math.random() - 0.5) * 10 },
+  ];
+
+  function moveCalebs() {
+    calebs.forEach(obj => {
+      obj.x += obj.vx;
+      obj.y += obj.vy;
+
+      const maxX = window.innerWidth - obj.el.offsetWidth;
+      const maxY = window.innerHeight - obj.el.offsetHeight;
+
+      if (obj.x < 0) { obj.x = 0; obj.vx *= -1; }
+      if (obj.y < 0) { obj.y = 0; obj.vy *= -1; }
+      if (obj.x > maxX) { obj.x = maxX; obj.vx *= -1; }
+      if (obj.y > maxY) { obj.y = maxY; obj.vy *= -1; }
+
+      obj.el.style.transform = `translate(${obj.x}px, ${obj.y}px)`;
+      obj.el.style.color = pickDiffColor(bgColor);
+    });
+  }
+
+  setInterval(moveCalebs, 50);
+</script>
+
 </body>
 </html>
