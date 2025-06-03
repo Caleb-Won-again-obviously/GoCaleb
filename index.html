@@ -111,9 +111,65 @@
   // Helper to pick a color that contrasts with bgColor
   function pickDiffColor(bgColor) {
     const colors = ['red', 'lime', 'cyan', 'yellow', 'magenta', 'white', 'orange', 'blue'];
-    // Just pick one that’s differen
+    // Just pick one that’s different (simple)
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
 
+  let bgColor = 'black';
 
+  // Flashing background and text
+  setInterval(() => {
+    // Random bg color
+    const bgColors = ['black', 'white', 'red', 'blue', 'green', 'yellow', 'purple', 'cyan'];
+    bgColor = bgColors[Math.floor(Math.random() * bgColors.length)];
+    document.body.style.backgroundColor = bgColor;
+
+    // Flash all text colors except CALEB divs (which have own colors)
+    document.body.style.color = pickDiffColor(bgColor);
+  }, 100);
+
+  // Setup CALEB elements with initial positions and velocities
+  const calebs = [
+    { el: document.getElementById('seizureCaleb1'), x: window.innerWidth / 2, y: window.innerHeight / 2, vx: (Math.random() - 0.5) * 10, vy: (Math.random() - 0.5) * 10 },
+    { el: document.getElementById('seizureCaleb2'), x: window.innerWidth / 2 + 100, y: window.innerHeight / 2 + 100, vx: (Math.random() - 0.5) * 10, vy: (Math.random() - 0.5) * 10 },
+  ];
+
+  function moveCalebs() {
+    calebs.forEach(obj => {
+      obj.x += obj.vx;
+      obj.y += obj.vy;
+
+      const maxX = window.innerWidth - obj.el.offsetWidth / 2;
+      const maxY = window.innerHeight - obj.el.offsetHeight / 2;
+
+      if (obj.x < obj.el.offsetWidth / 2) {
+        obj.x = obj.el.offsetWidth / 2;
+        obj.vx *= -1;
+      }
+      if (obj.y < obj.el.offsetHeight / 2) {
+        obj.y = obj.el.offsetHeight / 2;
+        obj.vy *= -1;
+      }
+      if (obj.x > maxX) {
+        obj.x = maxX;
+        obj.vx *= -1;
+      }
+      if (obj.y > maxY) {
+        obj.y = maxY;
+        obj.vy *= -1;
+      }
+
+      obj.el.style.left = obj.x + 'px';
+      obj.el.style.top = obj.y + 'px';
+      obj.el.style.transform = 'translate(-50%, -50%)';
+      obj.el.style.color = pickDiffColor(bgColor);
+    });
+
+    requestAnimationFrame(moveCalebs);
+  }
+
+  moveCalebs();
+</script>
 
 </body>
 </html>
