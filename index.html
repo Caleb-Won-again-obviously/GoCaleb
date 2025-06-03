@@ -89,94 +89,30 @@
 <a href="https://scratch.mit.edu/projects/1182801283" target="_blank" class="fancy-btn bottom-right">
   CLICK HERE FOR A GAME ABOUT CALEB
 </a>
-  <!-- Two big flying CALEB elements -->
-<div id="seizureCaleb1" style="
-  position: fixed; font-size: 15vw; font-weight: 900; font-family: Impact, sans-serif;
-  pointer-events: none; user-select: none; text-transform: uppercase; z-index: 9999;">
-  CALEB
-</div>
-<div id="seizureCaleb2" style="
-  position: fixed; font-size: 15vw; font-weight: 900; font-family: Impact, sans-serif;
-  pointer-events: none; user-select: none; text-transform: uppercase; z-index: 9999;">
-  CALEB
-</div>
+ 
+<style>
+  #seizureCaleb1, #seizureCaleb2 {
+    position: fixed;
+    font-size: 8em;
+    font-weight: bold;
+    user-select: none;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+  }
+</style>
 
-<!-- Two big flying CALEB elements -->
-<div id="seizureCaleb1" style="
-  position: fixed; font-size: 15vw; font-weight: 900; font-family: Impact, sans-serif;
-  pointer-events: none; user-select: none; text-transform: uppercase; z-index: 2147483647;
-  left: 50%; top: 50%; transform: translate(-50%, -50%);
-  color: red;
-">
-  CALEB
-</div>
-<div id="seizureCaleb2" style="
-  position: fixed; font-size: 15vw; font-weight: 900; font-family: Impact, sans-serif;
-  pointer-events: none; user-select: none; text-transform: uppercase; z-index: 2147483647;
-  left: 60%; top: 60%; transform: translate(-50%, -50%);
-  color: blue;
-">
-  CALEB
-</div>
+<div id="seizureCaleb1">CALEB</div>
+<div id="seizureCaleb2">CALEB</div>
 
 <script>
-  const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff', '#ffffff', '#000000'];
-  
-  function pickDiffColor(exclude) {
-    let c;
-    do {
-      c = colors[Math.floor(Math.random() * colors.length)];
-    } while (c === exclude);
-    return c;
-  }
+  // Helper to pick a color that contrasts with bgColor
+  function pickDiffColor(bgColor) {
+    const colors = ['red', 'lime', 'cyan', 'yellow', 'magenta', 'white', 'orange', 'blue'];
+    // Just pick one that’s differen
 
-  let bgColor = '#000000';
-  let textColor = '#ffffff';
-
-  function flashColors() {
-    bgColor = pickDiffColor(textColor);
-    textColor = pickDiffColor(bgColor);
-    document.body.style.backgroundColor = bgColor;
-    
-    // Flash all text elements
-    const allTextElems = document.querySelectorAll('body *:not(script):not(style)');
-    allTextElems.forEach(el => {
-      if (window.getComputedStyle(el).color) {
-        el.style.color = textColor;
-      }
-    });
-  }
-
-  setInterval(flashColors, 100);
-
-  // Flying CALEB setup
-  const calebs = [
-    { el: document.getElementById('seizureCaleb1'), x: window.innerWidth * 0.5, y: window.innerHeight * 0.5, vx: (Math.random() - 0.5) * 8, vy: (Math.random() - 0.5) * 8 },
-    { el: document.getElementById('seizureCaleb2'), x: window.innerWidth * 0.6, y: window.innerHeight * 0.6, vx: (Math.random() - 0.5) * 8, vy: (Math.random() - 0.5) * 8 },
-  ];
-
-  function moveCalebs() {
-    calebs.forEach(obj => {
-      obj.x += obj.vx;
-      obj.y += obj.vy;
-
-      const maxX = window.innerWidth - obj.el.offsetWidth;
-      const maxY = window.innerHeight - obj.el.offsetHeight;
-
-      if (obj.x < 0) { obj.x = 0; obj.vx *= -1; }
-      if (obj.y < 0) { obj.y = 0; obj.vy *= -1; }
-      if (obj.x > maxX) { obj.x = maxX; obj.vx *= -1; }
-      if (obj.y > maxY) { obj.y = maxY; obj.vy *= -1; }
-
-      obj.el.style.left = obj.x + 'px';
-      obj.el.style.top = obj.y + 'px';
-      obj.el.style.transform = 'translate(-50%, -50%)';
-      obj.el.style.color = pickDiffColor(bgColor);
-    });
-  }
-
-  setInterval(moveCalebs, 50);
-</script>
 
 
 </body>
